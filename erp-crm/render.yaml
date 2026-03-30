@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: learning-center-erp
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: WEBHOOK_URL
+        sync: false
+      - key: MINI_APP_URL
+        sync: false
+      - key: GOOGLE_SPREADSHEET_ID
+        sync: false
+      - key: GOOGLE_SERVICE_ACCOUNT_JSON
+        sync: false
+      - key: ADMIN_IDS
+        sync: false
+      - key: TEACHER_IDS
+        sync: false
+      - key: DEV_MODE
+        value: "false"
+    healthCheckPath: /health
